@@ -22,8 +22,8 @@ export default class App implements IDisposable {
 
         const dict: ClickedItems = {};
 
-        if (this.params.userState) {
-            for (const id of this.params.userState) {
+        if (this.params?.state) {
+            for (const id of this.params?.state) {
                 dict[id] = true;
             }
         }
@@ -37,7 +37,6 @@ export default class App implements IDisposable {
     }
 
     public generate(): void {
-
         const elements = $(`[${ELEMENT_ATTRIBUTES.ID}]`);
         elements.each((index, item)=> {
 
@@ -140,12 +139,12 @@ export default class App implements IDisposable {
     private onElementClicked(wnElem: Cash, parent: Cash): void {
         const id = parent.attr(ELEMENT_ATTRIBUTES.ID);
         const { firstLevel, level } = helper.parseLevel(id);
-        const { simulate, onUserClicked } = this.params.options;
+        const { simulate, onClick } = this.params;
 
         this.clickedItems[level] = true;
         this.clickedItems[firstLevel] = true;
 
-        const { markAsRead } = onUserClicked instanceof Function ? onUserClicked(id, wnElem[0]) : {
+        const { markAsRead } = onClick instanceof Function ? onClick(id, wnElem[0]) : {
             markAsRead: true
         };
 
@@ -200,7 +199,7 @@ export default class App implements IDisposable {
         $(`.${ELEMENT_CLASSES.TOOLTIP}`).remove();
     }
 
-    public getUserState(): Array<string> {
+    public getState(): Array<string> {
         return Object.keys(this.clickedItems);
     }
 

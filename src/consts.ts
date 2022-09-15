@@ -1,14 +1,14 @@
 export const USER_WATCHED_LEVELS_STORAGE_KEY = 'usersWatches';
 
 export const ELEMENT_ATTRIBUTES = {
-    ID: 'data-wn-id',
-    EXPIRATION: 'data-wn-expiration',
-    TOOLTIP_TEXT: 'data-wn-tooltip-text',
-    CLASS_NAME: 'data-wn-class-name',
-    PARENT_CLASS_NAME: 'data-wn-parent-class-name',
-    STYLE: 'data-wn-style',
-    PARENT_STYLE: 'data-wn-parent-style',
-    ERROR: 'data-wn-error'
+    ID: 'data-tnu-id', // Public
+    TOOLTIP_TEXT: 'data-tnu-tooltip-text', // Public
+    STYLE: 'data-tnu-style', // Public
+    PARENT_STYLE: 'data-tnu-parent-style', // Public
+    EXPIRATION: 'data-tnu-expiration', // Public
+    CLASS_NAME: 'data-tnu-class-name',
+    PARENT_CLASS_NAME: 'data-tnu-parent-class-name',
+    ERROR: 'data-tnu-error'
 };
 
 export const ELEMENT_CLASSES = {

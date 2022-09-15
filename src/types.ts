@@ -1,12 +1,9 @@
 type onUserClickedFunction = (id: string, element: HTMLElement) => { markAsRead: boolean };
 
 export type AppParams = {
-    userId: string,
-    userState?: Array<string>,
-    options?: {
-        simulate: boolean,
-        onUserClicked: onUserClickedFunction
-    }
+    state?: Array<string>,
+    simulate?: boolean,
+    onClick?: onUserClickedFunction
 };
 
 export interface IDisposable {
@@ -14,3 +11,9 @@ export interface IDisposable {
 }
 
 export type ClickedItems = { [key: string]: boolean };
+
+export interface ThatsnuSdk {
+    init(props?: AppParams): Promise<void>,
+    getState(): Array<string>,
+    dispose(): void
+}

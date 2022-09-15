@@ -1,45 +1,41 @@
 import App from './app';
 import domSubscriber from './utils/domSubscriber';
-import {AppParams} from './types';
-import helper from './utils/helper';
+import {AppParams, ThatsnuSdk} from './types';
 
 declare var window: {
-    onWhatsNewLoaded: Function,
+    onThatsnuLoaded: Function,
     scrollX: number,
     scrollY: number
 };
 
 let app: App;
+let initialized: boolean;
 
-const SDK = {
-    async init(params: AppParams): Promise<void> {
+const sdk: ThatsnuSdk = {
+    async init(params?: AppParams): Promise<void> {
+
+        if (initialized) return;
+        initialized = true;
+
         app = new App(params);
 
         domSubscriber.subscribe(() => {
             app.generate();
         });
     },
-    generateId(group: string, identifier?: { [key: string]: any } | string) {
-        if (!group) {
-            throw new Error('Invalid group');
-        }
-
-        if (!identifier) return group;
-        const hash = helper.getSha1(typeof identifier === 'object' ? JSON.stringify(identifier) : identifier);
-        return `${group}.${hash}`;
-    },
-    getUserState(): Array<string> {
-        return app.getUserState();
+    getState(): Array<string> {
+        return app.getState();
     },
     dispose() {
         app.dispose();
         domSubscriber.dispose();
         app = null;
+        initialized = false;
     }
 };
 
-if (typeof window?.onWhatsNewLoaded === 'function') {
-    window?.onWhatsNewLoaded(SDK);
+if (typeof window?.onThatsnuLoaded === 'function') {
+    window?.onThatsnuLoaded(sdk);
 }
 
-export default SDK;
+export default sdk;
