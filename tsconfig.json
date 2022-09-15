@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2017",
+    "allowJs": false,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "declarationMap": true,
+    "moduleResolution": "node",
+    "typeRoots": ["src/@types"]
+  },
+  "include": [
+    "src/**/*",
+    "index.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts"
+  ]
+}
