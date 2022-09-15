@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shlomisas/thatsnu-browser-sdk.git"
+    "url": "git+https://github.com/thatsnu/browser-sdk.git"
   },
   "author": "Shlomi Sasson <shlomi@sasson.me>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shlomisas/thatsnu-browser-sdk/issues"
+    "url": "https://github.com/thatsnu/browser-sdk/issues"
   },
-  "homepage": "https://github.com/shlomisas/thatsnu-browser-sdk/branches#readme",
+  "homepage": "https://github.com/thatsnu/browser-sdk/branches#readme",
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
     "@types/jest": "^29.0.2",
