@@ -1,4 +1,3 @@
-/* eslint-disable */
 <div style="text-align: center">
   <h1>Thatsnu!</h1>
   <p>Announce your customers about features you just launched!</p>
