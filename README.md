@@ -15,7 +15,9 @@ npm install --save-dev @thatsnu/browser-sdk
 
 ```html
 
-<span data-tnu-id="myNewFeature" data-tnu-tooltip="Here is a new feature!"></span>
+<span 
+    data-tnu-id="myNewFeature" 
+    data-tnu-tooltip="Here is a new feature!"></span>
 
 ```
 
@@ -29,7 +31,7 @@ thatsnu.init()
 
 ## 👍 Output
 
-<img src="./assets/example1.png" style="width:500px;" alt="Example1"/>
+<img src="./assets/example1.png" style="width:1024px;" alt="Example1"/>
 
 ## ⚙️ Options
 
@@ -41,7 +43,9 @@ All the available attributes you can put on any HTML element that the library wi
 <span 
     data-tnu-id="myNewFeature" 
     data-tnu-tooltip="Here is a new feature!"
-    data-tnu-expiration="2022-09-15T19:19:01.962Z">
+    data-tnu-expiration="2022-09-15T19:19:01.962Z"
+    data-tnu-style="{'top': '5px', 'left': '10px', 'color': 'blue' }"
+    data-tnu-parent-style="{ 'position': 'relative' }">
 </span>
 ```
 
@@ -97,7 +101,7 @@ This is the full usage example of the library:
 
 ```typescript
 await thatsnu.init({
-    state: ['anotherFeature'],
+    state: ['someFeature'],
     simulate: false,
     onClick(id: string): { markAsRead: boolean } {
         console.debug(`Element ${id} clicked!`);
@@ -112,7 +116,7 @@ await thatsnu.init({
 
 #### Methods
 
-> `init({ state, simulate, onClick }: {state: Array<string>, simulate: boolean, onClick: Function })`
+`init({ state, simulate, onClick }: {state: Array<string>, simulate: boolean, onClick: Function })`
 
 A method to initialize the library with new options that describe below.
 
@@ -121,12 +125,13 @@ It gets the following options:
 * `state` - an array of identifiers the user already clicked, and you want to prevent the library to generate. 
 * `simulate` - a boolean that indicate whether to prevent persist the user clicked indicators on localStorage or not, useful during development to save time of storage deletion from devtools.
 * `onClick: (id: string, element: HTMLElement) => { markAsRead: boolean }` - a callback function to get user's clicks on indicators, it receives the identifier of the clicked element as well as the [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) itself
+  * When returning `markAsRead` as `false`, It'll cause the library to not persist the user's click on the localStorage, which cause the user to see this indicator on the next page's refresh 
 
-> `getState(): Array<string>`
+`getState(): Array<string>`
 
 A method that return all indicators the user clicked so far, helpful to persist it on your backend etc.
 
-## Example
+## 🏆 Example
 
 Worth to invest 5 minutes to read!
 
