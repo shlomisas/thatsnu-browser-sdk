@@ -4,7 +4,6 @@
 </div>
 
 [![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
-[![npm downloads](https://badgen.net/npm/dm/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
 
 ## 📦 Install
 
