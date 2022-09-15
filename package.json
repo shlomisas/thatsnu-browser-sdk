@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/thatsnu/browser-sdk/issues"
   },
-  "homepage": "https://github.com/thatsnu/browser-sdk/branches#readme",
+  "homepage": "https://github.com/thatsnu/browser-sdk#readme",
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
     "@types/jest": "^29.0.2",
