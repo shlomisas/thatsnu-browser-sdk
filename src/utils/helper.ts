@@ -1,25 +1,19 @@
-import * as Rusha from 'rusha';
+import wcmatch from 'wildcard-match';
 
 export default {
-    parseLevel(id: string) {
+    getGroupFromId(id: string): string {
         const parts = id?.split('.');
-
         if (!parts?.[0]) {
             throw new Error('Invalid level');
         }
-
-        return { firstLevel: parts?.[0], secondLevel: parts?.[1], level: id };
+        return parts[0];
     },
-    generateColor() {
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += Math.floor(Math.random() * 10);
-        }
-        return color;
+    toCamelCase(str: string): string {
+        return str?.replace(/(-.)/g, (x) => {
+            return x[1].toUpperCase()
+        });
     },
-    getSha1(text: string) {
-        return Rusha.createHash()
-            .update(text)
-            .digest('hex');
+    isMatchWildcard(pattern: string, text: string): boolean {
+        return wcmatch(pattern)(text);
     }
 }

@@ -1,19 +1,29 @@
 export const USER_WATCHED_LEVELS_STORAGE_KEY = 'usersWatches';
 
-export const ELEMENT_ATTRIBUTES = {
-    ID: 'data-tnu-id', // Public
-    TOOLTIP_TEXT: 'data-tnu-tooltip-text', // Public
-    STYLE: 'data-tnu-style', // Public
-    PARENT_STYLE: 'data-tnu-parent-style', // Public
-    EXPIRATION: 'data-tnu-expiration', // Public
-    CLASS_NAME: 'data-tnu-class-name',
+export const ATTRIBUTE_PREFIX = 'data-tnu';
+
+export const INPUT_DOM_ATTRIBUTES = {
+    PARENT_STYLES: 'data-tnu-parent-styles',
     PARENT_CLASS_NAME: 'data-tnu-parent-class-name',
-    ERROR: 'data-tnu-error'
+    INDICATOR_ID: 'data-tnu-id',
+    INDICATOR_TEXT: 'data-tnu-text',
+    INDICATOR_STYLES: 'data-tnu-styles',
+    INDICATOR_CLASS_NAME: 'data-tnu-class-name',
+    INDICATOR_EXPIRATION: 'data-tnu-expiration',
+    TOOLTIP_TEXT: 'data-tnu-tooltip-text',
+    TOOLTIP_STYLES: 'data-tnu-tooltip-styles',
+    TOOLTIP_CLASS_NAME: 'data-tnu-tooltip-class-name',
 };
 
+export const OUTPUT_DOM_ATTRIBUTES = {
+    ERROR: 'data-tnu-error'
+}
+
 export const ELEMENT_CLASSES = {
-    MAIN: 'wn-element',
-    TOOLTIP: 'wn-tooltip'
+    INDICATOR: 'tnu-indicator',
+    INDICATOR_DOT_STYLE: 'tnu-indicator-dot',
+    INDICATOR_TEXT_STYLE: 'tnu-indicator-text',
+    TOOLTIP: 'tnu-tooltip'
 };
 
 export const ELEMENT_EVENTS = {

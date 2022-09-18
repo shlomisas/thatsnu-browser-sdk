@@ -7,33 +7,21 @@ describe('helper', ()=> {
 
         const combs = [{
             input: `a`,
-            output: {
-                firstLevel: 'a',
-                secondLevel: undefined,
-                level: `a`
-            }
+            output: 'a'
         }, {
             input: `a.b`,
-            output: {
-                firstLevel: 'a',
-                secondLevel: 'b',
-                level: `a.b`
-            }
+            output: 'a'
         }, {
             input: `a.b.c`,
-            output: {
-                firstLevel: 'a',
-                secondLevel: 'b',
-                level: `a.b.c`
-            }
+            output: 'a'
         }]
 
         for (const comb of combs) {
-            expect(helper.parseLevel(comb.input)).toMatchObject(comb.output);
+            expect(helper.getGroupFromId(comb.input)).toBe(comb.output);
         }
 
         try {
-            expect(helper.parseLevel(''));
+            expect(helper.getGroupFromId(''));
         } catch(e) {
             expect(e.message).toEqual('Invalid level')
         }

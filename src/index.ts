@@ -1,25 +1,25 @@
 import App from './app';
-import domSubscriber from './utils/domSubscriber';
+import domSubscriber from './utils/domObserver';
 import {AppParams, ThatsnuSdk} from './types';
 
 declare var window: {
     onThatsnuLoaded: Function,
     scrollX: number,
-    scrollY: number
+    scrollY: number,
+    thasnuInitialized: boolean
 };
 
 let app: App;
-let initialized: boolean;
 
 const sdk: ThatsnuSdk = {
     async init(params?: AppParams): Promise<void> {
 
-        if (initialized) return;
-        initialized = true;
+        if (window.thasnuInitialized) return;
+        window.thasnuInitialized = true;
 
         app = new App(params);
 
-        domSubscriber.subscribe(() => {
+        domSubscriber.observe(() => {
             app.generate();
         });
     },
@@ -30,7 +30,7 @@ const sdk: ThatsnuSdk = {
         app.dispose();
         domSubscriber.dispose();
         app = null;
-        initialized = false;
+        delete window.thasnuInitialized;
     }
 };
 

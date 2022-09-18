@@ -6,18 +6,18 @@ window.onThatsnuLoaded = jest.fn();
 
 import sdk from '../src/index';
 import App from '../src/app';
-import domSubscriber from '../src/utils/domSubscriber';
+import domObserver from '../src/utils/domObserver';
 
 describe('SDK', () => {
 
     let domSubscriberCallback: Function;
 
     beforeAll(() => {
-        domSubscriber.subscribe = jest.fn(cb => {
+        domObserver.observe = jest.fn(cb => {
             domSubscriberCallback = cb;
             domSubscriberCallback();
         });
-        domSubscriber.dispose = jest.fn(() => {});
+        domObserver.dispose = jest.fn(() => {});
 
         App.prototype.generate = jest.fn(function () {});
         App.prototype.dispose = jest.fn(function () {});
@@ -44,23 +44,23 @@ describe('SDK', () => {
         sdk.dispose();
 
         expect(App.prototype.dispose).toBeCalled();
-        expect(domSubscriber.dispose).toBeCalled();
+        expect(domObserver.dispose).toBeCalled();
     });
 
     test('get state', async ()=> {
 
-        const state: Array<string> = [
+        const initialState: Array<string> = [
             faker.commerce.product(),
             faker.commerce.product(),
             faker.commerce.product(),
             faker.commerce.product()
         ]
 
-        await sdk.init({ state });
+        await sdk.init({ initialState });
 
         const res = sdk.getState();
 
-        expect(state).toEqual(expect.arrayContaining(res));
-        expect(res).toEqual(expect.arrayContaining(state));
+        expect(initialState).toEqual(expect.arrayContaining(res));
+        expect(res).toEqual(expect.arrayContaining(initialState));
     });
 });
