@@ -33,6 +33,7 @@ export type ClickedItems = { [key: string]: boolean };
 export interface ThatsnuSdk {
     init(props?: AppParams): Promise<void>,
     getState(): Array<string>,
+    resetState(): void,
     dispose(): void
 }
 

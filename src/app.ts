@@ -260,6 +260,11 @@ export default class App implements IDisposable {
         return Object.keys(this.clickedItems);
     }
 
+    public resetState() {
+        storage.removeItem(USER_WATCHED_LEVELS_STORAGE_KEY);
+        this.clickedItems = {};
+    }
+
     public dispose() {
         this.hideTooltips();
 
@@ -273,5 +278,11 @@ export default class App implements IDisposable {
                 element.off(eventName);
             }
         }
+
+        for (const attribute of Object.values(OUTPUT_DOM_ATTRIBUTES)) {
+            $(`[${attribute}]`).removeAttr(attribute);
+        }
+
+        this.resetState();
     }
 }

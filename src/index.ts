@@ -26,6 +26,9 @@ const sdk: ThatsnuSdk = {
     getState(): Array<string> {
         return app.getState();
     },
+    resetState() {
+          app.resetState();
+    },
     dispose() {
         app.dispose();
         domSubscriber.dispose();

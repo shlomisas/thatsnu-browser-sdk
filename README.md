@@ -26,16 +26,18 @@
 ## 🙋‍ ️Use cases
 
 <ul style="list-style-type: space-counter;">
-    <li>Introduce new features to your users</li>
-    <li>Introduce recently added data</li>
+    <li>Announce new features, step by step</li>
+    <li>Introduce recently added dynamic data</li>
+    <li>Combine both..</li>
 </ul>
 
 ## ⭐️ ️Features
 
 <ul style="list-style-type: space-counter;">
-    <li>Group features under same look & feel</li>
-    <li>Automatically expire a feature of data-record when they're not relevant anymore</li>
+    <li>Group features hierarchically, with same look & feel</li>
+    <li>Automatically expire an after users should be familiar with it</li>
     <li>Customize each indicator via Javascript code or HTML attributes</li>
+    <li>Have bi-directional sync between user's watched indicators for <a href="#persistence">persistence</a> capabilities</li>
 </ul>
 
 # Usage
@@ -99,13 +101,14 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
         <tr>
             <td style="font-weight: bold" id="defaultColor">defaultColor</td>
             <td>string</td>
-            <td>a valid CSS color (hexa, rga, rgba, string) that will apply by default to all the indicators on page</td>
+            <td>A valid CSS color (hexa, rga, rgba, string) that will apply by default to all the indicators on page</td>
             <td style="background-color: #462a68;color: white;">#462a68</td>
         </tr>
         <tr>
             <td style="font-weight: bold">indicators</td>
             <td>Array&lt;IndicatorOption&gt;</td>
-            <td>an array of objects that alternatively can describe the indicator's options from the <a href="#indicatorOptions">table below</a> instead of using HTMl attributes. 
+            <td>
+                An array of objects that alternatively can describe the indicator's options from the <a href="#indicatorOptions">table below</a> instead of using HTMl attributes. 
                 <br>
                 When provide this array, you have to provide `id` property for each object and make sure it has a correspondence 
                 HTML element with similar `data-thatsnu-id`, the rest of the properties will define the element instead
@@ -119,7 +122,7 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
             <td style="font-weight: bold">onClick</td>
             <td>Function (id: string) => boolean</td>
             <td>
-                a callback function that will invoke when a user clicks one of indicators.<br>
+                A callback function that will invoke when a user clicks one of indicators.<br>
                 You'll receive the id (aka: `data-tnu-id`) of the clicked element and then you need to return a boolean value 
                 than tells the SDK if this user's click considered - so next time the user won't see this indicator - or not.
             </td>
@@ -150,7 +153,23 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
         <tr>
             <td style="font-weight: bold">debugTooltip</td>
             <td>boolean</td>
-            <td>a boolean that prevent mouse-out event from an indicator to leave the tooltip open and let the developer design it.</td>
+            <td>A boolean that prevent mouse-out event from an indicator to leave the tooltip open and let the developer design it.</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">resetState</td>
+            <td>Function () => void</td>
+            <td>
+                Calling this function will reset the state of clicked elements by user.
+                <br><br>
+                This is useful when you want to start from scratch and delete all stored values in the localStorage
+            </td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">dispose</td>
+            <td>Function () => void</td>
+            <td>Calling this function will shutdown the library completely include remove stored data and running processed</td>
             <td>false</td>
         </tr>
     </tbody>
@@ -334,4 +353,7 @@ The code will generate an indicator next to the share button:
 
 <p id="persistence"></p>
 
-TBH!
+By default, the library persist the user's clicks on indicators on localStorage, its good as long as the user 
+
+This library is front-end only (for now) and to make sure the same user won't see indicators he alreasy say form another \
+browser, you need to handle 
