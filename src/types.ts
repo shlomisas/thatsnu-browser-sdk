@@ -18,7 +18,6 @@ export type IndicatorOptions = Partial<Record<IndicatorOptionsList, any>>;
 
 export type AppParams = {
     initialState?: Array<string>,
-    simulate?: boolean,
     debugTooltip?: boolean,
     defaultColor?: string,
     onClick?: onUserClickedFunction,

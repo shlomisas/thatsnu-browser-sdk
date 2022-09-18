@@ -24,7 +24,7 @@ npm install --save-dev @thatsnu/browser-sdk
 
 ```
 
-2. Initialize our SDK:
+2. Initialize the SDK:
 
 ```ts
 import thatsnu from '@thatsnu/browser-sdk';
@@ -39,11 +39,13 @@ await thatsnu.init({
 
 <img src="./assets/example1.png" style="width:1024px;" alt="Example1"/>
 
+4. When a user clicks on the New icon, it disappears, and next time s.he won't see it anymore.
+
 ## ⚙️ Options
 
-### SDK
+### SDK options
 
-Here are the options to send to the SDK init function (`thatsnu.init(...)`):
+Here are the options you can provide the SDK init function (`thatsnu.init(...)` above):
 
 <table>
     <thead>
@@ -58,40 +60,52 @@ Here are the options to send to the SDK init function (`thatsnu.init(...)`):
         <tr>
             <td style="font-weight: bold">defaultColor</td>
             <td>string</td>
-            <td>a valid CSS color (hexa, rga, rgba, string) that will apply by default to all indicators on page</td>
+            <td>a valid CSS color (hexa, rga, rgba, string) that will apply by default to all the indicators on page</td>
             <td style="background-color: #462a68;color: white;">#462a68</td>
         </tr>
         <tr>
             <td style="font-weight: bold">indicators</td>
             <td>Array&lt;IndicatorOption&gt;</td>
-            <td>an array of indicator options from the table below, each item should point to an already exists HTML element with `data-thatsnu-id` and configure it</td>
+            <td>an array of objects that alternatively can describe the indicator's options from the table below instead of using HTMl attributes. 
+                <br>
+                When provide this array, you have to provide `id` property for each object and make sure it has a correspondence 
+                HTML element with similar `data-thatsnu-id`, the rest of the properties will define the element instead
+                of doing it via HTML attributes.
+                <br>
+                If an HTML attribute will be provided in addition, it has more power than the object property, and it'll override it.
+            </td>
             <td>&nbsp</td>
         </tr>
         <tr>
             <td style="font-weight: bold">onClick</td>
             <td>Function (id: string) => boolean</td>
             <td>
-                a callback function that will invoke when a user will click one of indicators.<br>
-                it receives the identifier of the clicked element and return a boolean to tell the SDK if this click considered (so next time the user won't see this indicator) or not
+                a callback function that will invoke when a user clicks one of indicators.<br>
+                You'll receive the id (aka: `data-tnu-id`) of the clicked element and then you need to return a boolean value 
+                than tells the SDK if this user's click considered - so next time the user won't see this indicator - or not.
             </td>
             <td>&nbsp</td>
         </tr>
         <tr>
             <td style="font-weight: bold">initialState</td>
             <td style="font-weight: bold">Array&lt;string&gt;</td>
-            <td>an initial state of identifiers you don't want the library to search and generate, useful if you manage the persistence on your end (e.g. on your backend)</td>
+            <td>an initial state of identifiers you want to initiate the SDK with.
+                <br><br>
+                When provide this state to the SDK, it considered as the user already clicked the elements with such ID
+                and won't see it again.
+                <br><br>
+                Required to use if you're managing the <a href="#persistence">persistence layer</a> by yourself.
+            </td>
             <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td style="font-weight: bold">simulate</td>
-            <td>boolean</td>
-            <td>a boolean that indicate whether to prevent persist the user clicked indicators on localStorage or not, useful during development to save time of storage deletion from devtools.</td>
-            <td>false</td>
         </tr>
         <tr>
             <td style="font-weight: bold">getState</td>
             <td>Function () => Array&lt;string&gt;</td>
-            <td>A method that return all indicators ID's the user clicked so far, helpful if you want to persist it on your end (backend etc.)</td>
+            <td>
+                A method that return all indicators ID's the user clicked so far.
+                <br><br>
+                Required to use if you're managing the <a href="#persistence">persistence layer</a> by yourself.
+            </td>
             <td>&nbsp</td>
         </tr>
         <tr>
@@ -103,7 +117,7 @@ Here are the options to send to the SDK init function (`thatsnu.init(...)`):
     </tbody>
 </table>
 
-### Indicator element
+### Indicator options
 
 Here are the options of a particular indicator's, they can be provided via HTML attributes or inside each object in the `indicators` array that sent to the SDK above.
 
@@ -274,3 +288,9 @@ Later, you added a new feature to let user share a report with others, inside a 
 The code will generate an indicator next to the share button:
 
 <img src="./assets/example4.png" style="width:768px;" alt="Example4"/>
+
+## Persistence
+
+<p id="persistence"></p>
+
+TBH!

@@ -202,7 +202,7 @@ export default class App implements IDisposable {
     private onElementClicked(wnElem: Cash, parent: Cash): void {
         const id = parent.attr(INPUT_DOM_ATTRIBUTES.INDICATOR_ID);
         const group = helper.getGroupFromId(id);
-        const { simulate, onClick } = this.params;
+        const { onClick } = this.params;
 
         this.clickedItems[id] = true;
         this.clickedItems[group] = true;
@@ -213,9 +213,7 @@ export default class App implements IDisposable {
             return;
         }
 
-        if (!simulate) {
-            storage.setItem(USER_WATCHED_LEVELS_STORAGE_KEY, this.clickedItems);
-        }
+        storage.setItem(USER_WATCHED_LEVELS_STORAGE_KEY, this.clickedItems);
 
         if (id) {
             parent.removeAttr(INPUT_DOM_ATTRIBUTES.INDICATOR_ID);
