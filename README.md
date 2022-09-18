@@ -13,6 +13,8 @@ npm install --save-dev @thatsnu/browser-sdk
 
 ## 🪄 Basic usage
 
+<p id="basicUsage"></p>
+
 1. Define an indicator next to an existing element(s) on your page
 
 ```html
@@ -45,7 +47,9 @@ await thatsnu.init({
 
 ### SDK options
 
-Here are the options you can provide the SDK init function (`thatsnu.init(...)` above):
+<p id="sdkOptions"></p>
+
+Here are the options you can provide the SDK init function (`thatsnu.init(...)` <a href="#basicUsage">above</a>):
 
 <table>
     <thead>
@@ -58,7 +62,7 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
     </thead>
     <tbody>
         <tr>
-            <td style="font-weight: bold">defaultColor</td>
+            <td style="font-weight: bold" id="defaultColor">defaultColor</td>
             <td>string</td>
             <td>a valid CSS color (hexa, rga, rgba, string) that will apply by default to all the indicators on page</td>
             <td style="background-color: #462a68;color: white;">#462a68</td>
@@ -66,7 +70,7 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
         <tr>
             <td style="font-weight: bold">indicators</td>
             <td>Array&lt;IndicatorOption&gt;</td>
-            <td>an array of objects that alternatively can describe the indicator's options from the table below instead of using HTMl attributes. 
+            <td>an array of objects that alternatively can describe the indicator's options from the <a href="#indicatorOptions">table below</a> instead of using HTMl attributes. 
                 <br>
                 When provide this array, you have to provide `id` property for each object and make sure it has a correspondence 
                 HTML element with similar `data-thatsnu-id`, the rest of the properties will define the element instead
@@ -119,7 +123,9 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
 
 ### Indicator options
 
-Here are the options of a particular indicator's, they can be provided via HTML attributes or inside each object in the `indicators` array that sent to the SDK above.
+<p id="indicatorOptions"></p>
+
+Here are the options of a particular indicator's, they can be provided via HTML attributes or inside each object in the `indicators` array that sent to the SDK <a href="#basicUsage">above</a>.
 
 <table>
     <thead>
@@ -137,7 +143,7 @@ Here are the options of a particular indicator's, they can be provided via HTML 
             <td style="font-weight: bold">data-tnu-id</td>
             <td>
                 a unique identifier for an element, the library search and watch on these attributes and generates an indicator next to it<br><br>
-                <u>Note:</u> this is the essential part of the library, the bare minimum is to define this as an attribute on an HTML element like in the example above, all the rest are optional. 
+                <u>Note:</u> this is the essential part of the library, the bare minimum is to define this as an attribute on an HTML element like in the example <a href="#basicUsage">above</a>, all the rest are optional. 
             </td>
             <td>yes, as an HTMl attribute!</td>
             <td>&nbsp</td>
@@ -166,7 +172,7 @@ Here are the options of a particular indicator's, they can be provided via HTML 
         <tr>
             <td style="font-weight: bold">color</td>
             <td style="font-weight: bold">data-tnu-color</td>
-            <td>define a color for the indicator, this override the defaultColor value mentioned above on the SDK initiation</td>
+            <td>define a color for the indicator, this override the <a href="#defaultColor">defaultColor</a> value on the SDK initiation</td>
             <td>no</td>
             <td>SDK.defaultColor</td>
         </tr>
