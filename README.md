@@ -19,8 +19,8 @@
     <br><br>
     Did they also asked you to have the same ability but for new dynamic data that appear in lists?
     <br><br>
-    With Thatsnu you can cover those use-cases easily and save the time of building such a mechanism, get the features
-    the user exposed to and persist it, so later he won't see them again.
+    With Thatsnu you can cover those use-cases easily and save the time of building such a mechanism, save the features
+    the user exposed to, so later he won't see them again.
 </p>
 
 ## 🙋‍ ️Use cases
