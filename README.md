@@ -1,8 +1,15 @@
 <div style="text-align: center">
     <h1>Thatsnu!</h1>
     <p style="font-weight: bold">Announce your users about features you just launched!</p>
-    <p>Thatsnu is an agnostic library to tag HTML element across your application and show indications about new features and data</p>
+    <p>
+        Thatsnu is an agnostic library to tag HTML element across your application and show indications for 
+        recently released features.
+    </p>
 </div>
+
+[![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
+
+# Motivation
 
 ## 🙋‍ Problem
 
@@ -30,7 +37,7 @@
     <li>Customize each indicator via Javascript code or HTML attributes</li>
 </ul>
 
-[![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
+# Usage
 
 ## 📦 Install
 
