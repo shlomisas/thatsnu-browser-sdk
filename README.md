@@ -19,7 +19,8 @@
     <br><br>
     Did they also asked you to have the same ability but for new dynamic data that appear in lists?
     <br><br>
-    With Thatsnu you can cover those use-cases easily and save the time of building such a generic mechanism.
+    With Thatsnu you can cover those use-cases easily and save the time of building such a mechanism, get the features
+    the user exposed to and persist it, so later he won't see them again.
 </p>
 
 ## 🙋‍ ️Use cases
@@ -75,7 +76,7 @@ await thatsnu.init({
 
 <img src="./assets/example1.png" style="width:1024px;" alt="Example1"/>
 
-4. When a user clicks on the New icon, it disappears, and next time s.he won't see it anymore.
+4. When a user clicks on the New icon, it disappears, and next time he won't see it anymore.
 
 ## ⚙️ Options
 
