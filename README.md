@@ -1,7 +1,34 @@
 <div style="text-align: center">
-  <h1>Thatsnu!</h1>
-  <p>Announce your customers about features you just launched!</p>
+    <h1>Thatsnu!</h1>
+    <p style="font-weight: bold">Announce your users about features you just launched!</p>
+    <p>Thatsnu is an agnostic library to tag HTML element across your application and show indications about new features and data</p>
 </div>
+
+## 🙋‍ Problem
+
+<p>
+    Did you ever got a request from your Product Manager to highlight features you developed as "New" but you said: 
+    "Oh, we need to invest a time and build something generic for the whole product and not just for this specific case?"
+    <br><br>
+    Did they also asked you to have the same ability but for new dynamic data that appear in lists?
+    <br><br>
+    With Thatsnu you can cover those use-cases easily and save the time of building such a generic mechanism.
+</p>
+
+## 🙋‍ ️Use cases
+
+<ul style="list-style-type: space-counter;">
+    <li>Introduce new features to your users</li>
+    <li>Introduce recently added data</li>
+</ul>
+
+## ⭐️ ️Features
+
+<ul style="list-style-type: space-counter;">
+    <li>Group features under same look & feel</li>
+    <li>Automatically expire a feature of data-record when they're not relevant anymore</li>
+    <li>Customize each indicator via Javascript code or HTML attributes</li>
+</ul>
 
 [![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
 
@@ -224,7 +251,7 @@ Each HTML element has to have an identifier that defines via the `data-tnu-id` a
 
 ### New feature introduction
 
-For example, assume you added a new reports system for your customers, probably you're going to have a new menu item on the left, that you want the user to be aware of, and stop shows it when use clicked on it or after a while when users got used to it.
+For example, assume you added a new reports system for your users, probably you're going to have a new menu item on the left, that you want the user to be aware of, and stop shows it when use clicked on it or after a while when users got used to it.
 
 To do so, add the following attributes to your exists menu item element belong to the nre Reports:
 
