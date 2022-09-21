@@ -14,7 +14,23 @@ export enum IndicatorOptionsList {
     tooltipStyles = 'tooltipStyles'
 }
 
-export type IndicatorOptions = Partial<Record<IndicatorOptionsList, any>>;
+export type IndicatorOptions = {
+    id?: string,
+    text?: string,
+    className?: string,
+    styles?: ElementStyles,
+    color?: string,
+    expiration?: Date,
+    tooltipText?: string,
+    tooltipClassName?: string,
+    tooltipStyles?: ElementStyles
+};
+
+export type IndicatorAttributes = Omit<IndicatorOptions, 'styles' | 'expiration' | 'tooltipStyles'> & {
+    styles?: string,
+    expiration?: string,
+    tooltipStyles?: string
+};
 
 export type AppParams = {
     initialState?: Array<string>,
@@ -38,7 +54,7 @@ export interface ThatsnuSdk {
 }
 
 export type ClassNames = Array<string>;
-export type ElementStyles = { [key: string]: string };
+export type ElementStyles = { [key: string]: string | number };
 
 export type IndicatorElementSettings = {
     id: string,

@@ -1,4 +1,4 @@
-export const USER_WATCHED_LEVELS_STORAGE_KEY = 'usersWatches';
+export const USER_CLICKED_ITEMS_STORAGE_KEY = 'usersWatches';
 
 export const ATTRIBUTE_PREFIX = 'data-tnu';
 
@@ -30,4 +30,10 @@ export const ELEMENT_EVENTS = {
     CLICK: 'click',
     MOUSE_OVER: 'mouseover',
     MOUSE_OUT: 'mouseout'
+};
+
+export const DEFAULT_INDICATOR_COLOR = '#462a68';
+
+export const INDICATOR_ERRORS = {
+    ITEM_EXPIRED: 1
 };

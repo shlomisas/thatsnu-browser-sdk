@@ -30,7 +30,7 @@ const sdk: ThatsnuSdk = {
           app.resetState();
     },
     dispose() {
-        app.dispose();
+        app?.dispose();
         domSubscriber.dispose();
         app = null;
         delete window.thasnuInitialized;

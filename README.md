@@ -115,6 +115,9 @@ Here are the options you can provide the SDK init function (`thatsnu.init(...)` 
                 of doing it via HTML attributes.
                 <br>
                 If an HTML attribute will be provided in addition, it has more power than the object property, and it'll override it.
+                <br><br>
+                The `id` property can be also a wildcard (e.g. `feature.*`) to let you configure multiple and/or dynamic
+                Indicators in one object.
             </td>
             <td>&nbsp</td>
         </tr>
