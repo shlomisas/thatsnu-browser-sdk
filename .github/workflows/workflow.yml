@@ -22,5 +22,4 @@ jobs:
       - uses: actions/checkout@master
       - uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage
           fail_ci_if_error: true
