@@ -2,8 +2,8 @@
     <h1>Thatsnu!</h1>
     <p style="font-weight: bold">Announce your users about features you just launched!</p>
     <p>
-        Thatsnu is an agnostic library to tag HTML element across your application and show indications for 
-        recently released features.
+        Thatsnu is an agnostic library to have new features indicators next to HTML element across your application and self-explain 
+        your users about new feature and data that coming up. 
     </p>
 </div>
 
