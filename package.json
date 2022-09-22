@@ -15,6 +15,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
+    "coverage": "npm t -- --coverage",
     "start": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "release": "npm run build -- --mode production && npm publish",

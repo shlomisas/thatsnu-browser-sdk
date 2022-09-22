@@ -14,5 +14,13 @@ module.exports = {
   moduleNameMapper: {
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
   },
-  verbose: true
+  verbose: true,
+  coverageThreshold: {
+    "global": {
+      "branches": 94,
+      "functions": 94,
+      "lines": 98,
+      "statements": 98
+    }
+  }
 };
