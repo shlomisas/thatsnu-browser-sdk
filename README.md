@@ -8,8 +8,9 @@
 </div>
 
 [![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
-[![codecov](https://codecov.io/gh/thatsnu/browser-sdk/branch/master/graph/badge.svg?token=8PRGT7I3OT)](https://codecov.io/gh/thatsnu/browser-sdk)
+[![npm downloads](https://badgen.net/npm/dm/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
 [![Continuous Integration](https://github.com/thatsnu/browser-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/thatsnu/browser-sdk/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/thatsnu/browser-sdk/branch/master/graph/badge.svg?token=8PRGT7I3OT)](https://codecov.io/gh/thatsnu/browser-sdk)
 
 # Motivation
 
