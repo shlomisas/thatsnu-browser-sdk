@@ -17,8 +17,8 @@
 ## 🤷‍ Problem
 
 <p>
-    Did you ever got a request from your Product Manager to highlight features you developed as "New" but you said: 
-    "Oh, we need to invest a time and build something generic for the whole product and not just for this specific case?"
+    Are you familiar with those requests by your Product Manager to highlight features you developed as "New" but you 
+    said: "Oh, we need to invest a time and build something generic for the whole product and not just for this specific case" and then its postponed?
     <br><br>
     Did they also asked you to have the same ability but for new dynamic data that appear in lists?
     <br><br>
