@@ -14,8 +14,6 @@
 
 # Motivation
 
-test
-
 ## 🤷‍ Problem
 
 <p>
