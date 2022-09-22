@@ -13,13 +13,12 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm test
+      - run: npm t -- --coverage
   codecov:
     needs: test
     runs-on: ubuntu-latest
     name: 'Codecov'
     steps:
-      - uses: actions/checkout@master
       - uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
