@@ -4,3 +4,5 @@ test
 tsconfig.json
 webpack.config.js
 jest.config.js
+coverage
+.github
