@@ -8,7 +8,7 @@
 </div>
 
 [![npm version](https://badgen.net/npm/v/@thatsnu/browser-sdk)](https://www.npmjs.com/package/@thatsnu/browser-sdk)
-[![codecov](https://app.codecov.io/gh/thatsnu/browser-sdk/branch/main/graph/badge.svg?token=N61U168G08)](https://app.codecov.io/gh/thatsnu/browser-sdk)
+[![codecov](https://app.codecov.io/gh/thatsnu/browser-sdk/branch/master/graph/badge.svg?token=N61U168G08)](https://app.codecov.io/gh/thatsnu/browser-sdk?branch=master)
 
 # Motivation
 
