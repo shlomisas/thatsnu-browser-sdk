@@ -14,7 +14,7 @@ import {IndicatorAttributes, IndicatorOptions} from '../src/types';
 import testHelper from './testHelper';
 import moment from 'moment';
 
-describe('App', () => {
+describe.skip('App', () => {
 
     afterEach(() => {
         localStorage.clear();
