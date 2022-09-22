@@ -461,7 +461,7 @@ describe('App', () => {
     test('check expired indicator via HTML attributes', ()=>{
 
         const id = faker.datatype.uuid();
-        const expiration = faker.datatype.datetime();
+        const expiration = moment().add(1, 'days');
 
         global.document.documentElement.innerHTML = `<body></body>`;
 
@@ -475,7 +475,7 @@ describe('App', () => {
         app.generate();
 
         const indicator = testHelper.getIndicator(id);
-        expect(indicator.length).toBe(1);
+        expect(indicator.length).toEqual(1);
 
         app.dispose();
 
