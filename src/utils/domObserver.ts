@@ -1,4 +1,4 @@
-import {INPUT_DOM_ATTRIBUTES} from '../consts';
+import {VALID_DOM_ATTRIBUTES} from '../consts';
 import {IDisposable} from '../types';
 
 let observer: MutationObserver;
@@ -14,7 +14,7 @@ class DomObserver implements IDisposable {
             attributes: true,
             childList: true,
             subtree: true,
-            attributeFilter: [INPUT_DOM_ATTRIBUTES.INDICATOR_ID]
+            attributeFilter: [VALID_DOM_ATTRIBUTES.INDICATOR_ID]
         });
 
         cb();

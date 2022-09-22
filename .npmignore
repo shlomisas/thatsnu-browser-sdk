@@ -6,3 +6,4 @@ webpack.config.js
 jest.config.js
 coverage
 .github
+assets

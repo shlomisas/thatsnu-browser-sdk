@@ -1,10 +1,12 @@
 import $, {Cash} from 'cash-dom';
-import {ELEMENT_CLASSES} from '../consts';
+import {ATTRIBUTE_PREFIX, ELEMENT_CLASSES} from '../consts';
 import {
     ClassNames,
     ElementStyles,
-    IndicatorElementSettings,
-    TooltipElementSettings} from '../types';
+    IndicatorElementSettings, IndicatorOptionsList,
+    TooltipElementSettings
+} from '../types';
+import helper from './helper';
 
 const getElement = ({ type, text, styles, classNames }: {
     type: string ,
@@ -83,6 +85,9 @@ const domManager = {
                 elem.addClass(className);
             }
         }
+    },
+    attributeToOption(attrName: string): IndicatorOptionsList {
+        return helper.toCamelCase(attrName.substring(ATTRIBUTE_PREFIX.length + 1)) as IndicatorOptionsList;
     }
 }
 

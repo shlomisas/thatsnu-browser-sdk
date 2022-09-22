@@ -4,11 +4,10 @@ import './styles/app.less';
 import storage from './utils/storage';
 
 import {
-    INPUT_DOM_ATTRIBUTES,
+    VALID_DOM_ATTRIBUTES,
     ELEMENT_CLASSES,
     ELEMENT_EVENTS,
     USER_CLICKED_ITEMS_STORAGE_KEY,
-    OUTPUT_DOM_ATTRIBUTES,
     ATTRIBUTE_PREFIX,
     DEFAULT_INDICATOR_COLOR,
     INDICATOR_ERRORS
@@ -18,7 +17,7 @@ import {
     ClickedItems,
     IndicatorSettings,
     IDisposable,
-    TooltipElementSettings, IndicatorOptions, IndicatorOptionsList
+    TooltipElementSettings, IndicatorOptions
 } from './types';
 import helper from './utils/helper';
 import domManager from './utils/domManager';
@@ -47,7 +46,7 @@ export default class App implements IDisposable {
     }
 
     public generate(): void {
-        const elements = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}]`);
+        const elements = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}]`);
         elements.each((index, item)=> {
 
             const parent = $(item);
@@ -78,7 +77,7 @@ export default class App implements IDisposable {
             }
 
             if (expiration && expiration.getTime() < new Date().getTime()) {
-                parent.attr(OUTPUT_DOM_ATTRIBUTES.ERROR, `${INDICATOR_ERRORS.ITEM_EXPIRED}`);
+                parent.attr(VALID_DOM_ATTRIBUTES.INDICATOR_ERROR, `${INDICATOR_ERRORS.ITEM_EXPIRED}`);
                 return;
             }
 
@@ -160,13 +159,15 @@ export default class App implements IDisposable {
     }
 
     private getOptionsFromParentAttributes(parent: Cash): IndicatorOptions {
-        const validOptions = Object.keys(IndicatorOptionsList);
+
+        const validAttributes = Object.values(VALID_DOM_ATTRIBUTES);
 
         const data: {[key: string]: any } = {};
+
         for (const attr of parent[0].attributes) {
             if (attr.name.startsWith(ATTRIBUTE_PREFIX)) {
-                const optionName = helper.toCamelCase(attr.name.substring(ATTRIBUTE_PREFIX.length + 1));
-                if (validOptions.includes(optionName)) {
+                if (validAttributes.includes(attr.name)) {
+                    const optionName = domManager.attributeToOption(attr.name);
                     data[optionName] = optionsValidator.normalizeAttribute(optionName, attr.value);
                 } else {
                     logger.log(`Invalid Thatsnu attribute: ${attr.name}`);
@@ -200,7 +201,7 @@ export default class App implements IDisposable {
     }
 
     private onElementClicked(wnElem: Cash, parent: Cash): void {
-        const id = parent.attr(INPUT_DOM_ATTRIBUTES.INDICATOR_ID);
+        const id = parent.attr(VALID_DOM_ATTRIBUTES.INDICATOR_ID);
         const group = helper.getGroupFromId(id);
         const { onClick } = this.params || {};
 
@@ -216,9 +217,9 @@ export default class App implements IDisposable {
         storage.setItem(USER_CLICKED_ITEMS_STORAGE_KEY, this.clickedItems);
 
         if (id) {
-            parent.removeAttr(INPUT_DOM_ATTRIBUTES.INDICATOR_ID);
+            parent.removeAttr(VALID_DOM_ATTRIBUTES.INDICATOR_ID);
             wnElem.remove();
-            const firstLevelElem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${group}"`);
+            const firstLevelElem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${group}"`);
             this.cleanElement(firstLevelElem);
         }
 
@@ -227,7 +228,7 @@ export default class App implements IDisposable {
     }
 
     private cleanElement(elem: Cash) {
-        for (const attribute of Object.values(INPUT_DOM_ATTRIBUTES)) {
+        for (const attribute of Object.values(VALID_DOM_ATTRIBUTES)) {
             elem.removeAttr(attribute);
         }
 
@@ -268,8 +269,8 @@ export default class App implements IDisposable {
     public dispose() {
         this.hideTooltips();
 
-        const elements = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}]`);
-        for (const attribute of Object.values(INPUT_DOM_ATTRIBUTES)) {
+        const elements = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}]`);
+        for (const attribute of Object.values(VALID_DOM_ATTRIBUTES)) {
             elements.removeAttr(attribute).find(`.${ELEMENT_CLASSES.INDICATOR}`).remove();
         }
 
@@ -277,10 +278,6 @@ export default class App implements IDisposable {
             for (const eventName of Object.values(ELEMENT_EVENTS)) {
                 element.off(eventName);
             }
-        }
-
-        for (const attribute of Object.values(OUTPUT_DOM_ATTRIBUTES)) {
-            $(`[${attribute}]`).removeAttr(attribute);
         }
 
         this.resetState();

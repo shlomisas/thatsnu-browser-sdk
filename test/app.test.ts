@@ -4,15 +4,15 @@ import {faker} from '@faker-js/faker';
 
 import App from '../src/app';
 import {
-    INPUT_DOM_ATTRIBUTES,
+    VALID_DOM_ATTRIBUTES,
     ELEMENT_CLASSES,
-    OUTPUT_DOM_ATTRIBUTES,
     INDICATOR_ERRORS,
     ELEMENT_EVENTS
 } from '../src/consts';
-import {IndicatorAttributes, IndicatorOptions} from '../src/types';
+import {IndicatorAttributes, IndicatorOptions, IndicatorOptionsList} from '../src/types';
 import testHelper from './testHelper';
 import moment from 'moment';
+import domManager from '../src/utils/domManager';
 
 describe('App', () => {
 
@@ -32,7 +32,7 @@ describe('App', () => {
 
             const app = new App();
             app.generate();
-            const elem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${feature.id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
+            const elem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${feature.id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
             expect(elem.hasClass(ELEMENT_CLASSES.INDICATOR_DOT_STYLE)).toBeTruthy();
         });
 
@@ -47,16 +47,26 @@ describe('App', () => {
 
             const app = new App();
             app.generate();
-            const elem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${feature.id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
+            const elem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${feature.id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
             expect(elem.hasClass(ELEMENT_CLASSES.INDICATOR_TEXT_STYLE)).toBeTruthy();
         });
     });
 
     describe('indicator options', () => {
+
+        test('check options and attributes alignment', () => {
+            const options = Object.keys(IndicatorOptionsList);
+            const attributes = Object.values(VALID_DOM_ATTRIBUTES).map(item => {
+                return domManager.attributeToOption(item);
+            });
+
+            expect(options).toEqual(expect.arrayContaining(attributes));
+            expect(attributes).toEqual(expect.arrayContaining(options));
+        });
+
         test('check indicator by HTML attributes', () => {
 
             const ids = [
-                faker.datatype.uuid(),
                 faker.datatype.uuid()
             ];
 
@@ -72,18 +82,16 @@ describe('App', () => {
                     div.attr(key, indicatorAttributes[key as keyof IndicatorAttributes]);
                 }
 
-                $(global.document.body).append(div);
+                $('body').append(div);
                 indicators[id] = indicatorOptions;
             }
 
             const app = new App();
-
             app.generate();
 
 
             for (const id of ids) {
-                const parent = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`);
-                const elem = parent.find(`.${ELEMENT_CLASSES.INDICATOR}`);
+                const elem = testHelper.getIndicator(id);
                 testHelper.testElem(elem, indicators[id]);
             }
         });
@@ -110,7 +118,7 @@ describe('App', () => {
             app.generate();
 
             for (const id of ids) {
-                const elem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
+                const elem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
                 const indicatorOptions = indicators.find(item => item.id === id);
                 testHelper.testElem(elem, indicatorOptions);
             }
@@ -164,14 +172,13 @@ describe('App', () => {
             app.generate();
 
             for (const id of ids) {
-                const elem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
+                const elem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
                 const indicatorOptions = indicators.find(item => item.id === id);
                 testHelper.testTooltip(elem, indicatorOptions);
             }
         });
 
         test('check invalid attribute', () => {
-
             const invalidAttributeName = 'data-tnu-invalid-attr';
             const id = faker.datatype.uuid();
             global.document.documentElement.innerHTML = `<body></body>`;
@@ -203,7 +210,7 @@ describe('App', () => {
             app.generate();
 
             for (const id of ids) {
-                const selector = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`;
+                const selector = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`;
 
                 const elemBeforeClick = $(selector).find(`.${ELEMENT_CLASSES.INDICATOR}`);
                 expect(elemBeforeClick.length).toBe(1);
@@ -231,8 +238,8 @@ describe('App', () => {
             const app = new App();
             app.generate();
 
-            const selector1 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
-            const selector2 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
+            const selector1 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
+            const selector2 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
 
             const elem1BeforeClick = $(selector1).find(`.${ELEMENT_CLASSES.INDICATOR}`);
             expect(elem1BeforeClick.length).toBe(1);
@@ -280,8 +287,8 @@ describe('App', () => {
             const app = new App();
             app.generate();
 
-            const selector1 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
-            const selector2 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
+            const selector1 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
+            const selector2 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
 
             const elem1BeforeClick = $(selector1).find(`.${ELEMENT_CLASSES.INDICATOR}`);
             expect(elem1BeforeClick.length).toBe(1);
@@ -337,7 +344,7 @@ describe('App', () => {
 
             for (const id of ids) {
 
-                const elem = $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
+                const elem = $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`).find(`.${ELEMENT_CLASSES.INDICATOR}`);
 
                 let indicatorOptions: IndicatorOptions;
 
@@ -374,8 +381,8 @@ describe('App', () => {
 
             app.generate();
 
-            const selector1 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${indicators[0].id}"]`;
-            const selector2 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${indicators[0].id}"]`;
+            const selector1 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${indicators[0].id}"]`;
+            const selector2 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${indicators[0].id}"]`;
 
             const elem1 = $(selector1).find(`.${ELEMENT_CLASSES.INDICATOR}`);
             expect(elem1.length).toBe(1);
@@ -403,8 +410,8 @@ describe('App', () => {
         const app = new App();
         app.generate();
 
-        const selector1 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
-        const selector2 = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
+        const selector1 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
+        const selector2 = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[1]}"]`;
 
         const elemBeforeClick = $(selector1).find(`.${ELEMENT_CLASSES.INDICATOR}`);
         expect(elemBeforeClick.length).toBe(1);
@@ -451,11 +458,11 @@ describe('App', () => {
 
         app.generate();
 
-        const selector = `[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
+        const selector = `[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${ids[0]}"]`;
 
         const elem = $(selector);
         expect(elem.length).toBe(1);
-        expect(elem.attr(OUTPUT_DOM_ATTRIBUTES.ERROR)).toEqual(`${INDICATOR_ERRORS.ITEM_EXPIRED}`);
+        expect(elem.attr(VALID_DOM_ATTRIBUTES.INDICATOR_ERROR)).toEqual(`${INDICATOR_ERRORS.ITEM_EXPIRED}`);
     });
 
     test('check expired indicator via HTML attributes', ()=>{
@@ -468,7 +475,7 @@ describe('App', () => {
         const body = $('body');
 
         body.append(
-            `<div ${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}" ${INPUT_DOM_ATTRIBUTES.INDICATOR_EXPIRATION}="${expiration.toISOString()}"></div>`
+            `<div ${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}" ${VALID_DOM_ATTRIBUTES.INDICATOR_EXPIRATION}="${expiration.toISOString()}"></div>`
         );
 
         const app = new App();
@@ -480,7 +487,7 @@ describe('App', () => {
         app.dispose();
 
         body.append(
-            `<div ${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}" ${INPUT_DOM_ATTRIBUTES.INDICATOR_EXPIRATION}="invalid date"></div>`
+            `<div ${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}" ${VALID_DOM_ATTRIBUTES.INDICATOR_EXPIRATION}="invalid date"></div>`
         );
 
         try {
@@ -530,7 +537,7 @@ describe('App', () => {
 
             app.dispose();
 
-            expect(testHelper.getIndicatorParent(id).attr(INPUT_DOM_ATTRIBUTES.INDICATOR_ID)).toBeUndefined();
+            expect(testHelper.getIndicatorParent(id).attr(VALID_DOM_ATTRIBUTES.INDICATOR_ID)).toBeUndefined();
             expect(testHelper.getIndicator(id).length).toBe(0);
 
         });

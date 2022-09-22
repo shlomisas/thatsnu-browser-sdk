@@ -1,12 +1,12 @@
 import {expect} from '@jest/globals';
 import {ElementStyles, IndicatorAttributes, IndicatorOptions, IndicatorOptionsList} from '../src/types';
 import {faker} from '@faker-js/faker';
-import {ATTRIBUTE_PREFIX, ELEMENT_CLASSES, ELEMENT_EVENTS, INPUT_DOM_ATTRIBUTES} from '../src/consts';
+import {ATTRIBUTE_PREFIX, ELEMENT_CLASSES, ELEMENT_EVENTS, VALID_DOM_ATTRIBUTES} from '../src/consts';
 import $, {Cash} from 'cash-dom';
 
 class TestHelper {
     getIndicatorParent(id: string) {
-        return $(`[${INPUT_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`);
+        return $(`[${VALID_DOM_ATTRIBUTES.INDICATOR_ID}="${id}"]`);
     }
 
     getIndicator(id: string) {

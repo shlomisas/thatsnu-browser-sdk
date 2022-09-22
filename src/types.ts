@@ -8,6 +8,7 @@ export enum IndicatorOptionsList {
     styles = 'styles',
     color = 'color',
     expiration = 'expiration',
+    error = 'error',
     // Tooltip
     tooltipText = 'tooltipText',
     tooltipClassName = 'tooltipClassName',
@@ -20,6 +21,7 @@ export type IndicatorOptions = {
     className?: string,
     styles?: ElementStyles,
     color?: string,
+    error?: string,
     expiration?: Date,
     tooltipText?: string,
     tooltipClassName?: string,
