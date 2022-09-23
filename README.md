@@ -43,6 +43,12 @@
     <li>Have bi-directional sync between user's watched indicators for <a href="#persistence">persistence</a> capabilities</li>
 </ul>
 
+## 🕹Demo
+
+[demo.thatsnu.com](https://demo.thatsnu.com)
+
+In this demo you can see a fake customer portal website with Thatsnu SDK in use, the examples' screenshots below also from that demo website.
+
 # Usage
 
 ## 📦 Install
