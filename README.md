@@ -45,7 +45,9 @@
 
 ## 🕹Demo
 
-[demo.thatsnu.com](https://demo.thatsnu.com)
+<p>
+    <a href="https://demo.thatsnu.com" target="_blank">demo.thatsnu.com</a>
+</p>
 
 In this demo you can see a fake customer portal website with Thatsnu SDK in use, the examples' screenshots below also from that demo website.
 
